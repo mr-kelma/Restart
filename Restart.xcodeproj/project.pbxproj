@@ -12,6 +12,7 @@
 		70502FC1292502420070679F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70502FC0292502420070679F /* Assets.xcassets */; };
 		70502FC4292502420070679F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70502FC3292502420070679F /* Preview Assets.xcassets */; };
 		70502FCC292502A60070679F /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 70502FCB292502A60070679F /* Sounds */; };
+		70502FCE292507470070679F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 70502FCD292507470070679F /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		70502FC0292502420070679F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70502FC3292502420070679F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		70502FCB292502A60070679F /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		70502FCD292507470070679F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +39,7 @@
 		70502FB0292502410070679F = {
 			isa = PBXGroup;
 			children = (
+				70502FCD292507470070679F /* .gitignore */,
 				70502FBB292502410070679F /* Restart */,
 				70502FBA292502410070679F /* Products */,
 			);
@@ -136,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70502FCE292507470070679F /* .gitignore in Resources */,
 				70502FCC292502A60070679F /* Sounds in Resources */,
 				70502FC4292502420070679F /* Preview Assets.xcassets in Resources */,
 				70502FC1292502420070679F /* Assets.xcassets in Resources */,
