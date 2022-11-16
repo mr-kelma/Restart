@@ -44,14 +44,7 @@ struct OnboardingView: View {
                 // MARK: - CENTER
                 
                 ZStack {
-                    ZStack {
-                        Circle()
-                            .stroke(.white.opacity(0.2), lineWidth: 40)
-                            .frame(width: 260, height: 260, alignment: .center)
-                        Circle()
-                            .stroke(.white.opacity(0.2), lineWidth: 80)
-                            .frame(width: 260, height: 260, alignment: .center)
-                    } //: ZSTACK
+                    CircleGroupView(shapeColor: .white, shapeOpacity: 0.2)
                     
                     Image("characterOne")
                         .resizable()
@@ -119,6 +112,8 @@ struct OnboardingView: View {
         } //: ZSTACK
     }
 }
+
+// MARK: - PREVIEW
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {

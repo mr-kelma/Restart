@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - BODY
+
 struct ContentView: View {
     @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
 
@@ -20,6 +22,8 @@ struct ContentView: View {
         }
     }
 }
+
+// MARK: - PREVIEW
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
