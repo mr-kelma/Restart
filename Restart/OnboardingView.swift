@@ -14,6 +14,7 @@ struct OnboardingView: View {
     
     @State private var buttonWidth: Double = UIScreen.main.bounds.width - 80
     @State private var buttonOffset: CGFloat = 0
+    @State private var isAnimation: Bool = false
     
     // MARK: - BODY
     
@@ -28,21 +29,24 @@ struct OnboardingView: View {
                 Spacer()
                 
                 VStack(spacing: 0) {
-                    Text("Share.")
+                    Text("Делись")
                         .font(.system(size: 60))
                         .fontWeight(.heavy)
                         .foregroundColor(.white)
-                    
                     Text("""
-                    It's not how much we give but
-                    how much love we put into giving.
+                    Дело не в том, сколько мы даем, а в том,
+                    сколько любви мы в это вкладываем
                     """)
                     .font(.title3)
                     .fontWeight(.light)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 10)
+                    
                 } //: HEADER
+                .opacity(isAnimation ? 1 : 0)
+                .offset(y: isAnimation ? 0 : -50)
+                .animation(.easeOut(duration: 1), value: isAnimation)
                 
                 // MARK: - CENTER
                 
@@ -52,6 +56,8 @@ struct OnboardingView: View {
                     Image("characterOne")
                         .resizable()
                         .scaledToFit()
+                        .opacity(isAnimation ? 1 : 0)
+                        .animation(.easeOut(duration: 0.8), value: isAnimation)
                 } //: CENTER
                 
                 Spacer()
@@ -111,22 +117,30 @@ struct OnboardingView: View {
                                 }
                             }
                             .onEnded { _ in
-                                if buttonOffset > buttonWidth / 2 {
-                                    buttonOffset = buttonWidth - 80
-                                    isOnboardingViewActive = false
-                                } else {
-                                    buttonOffset = 0
+                                withAnimation(Animation.easeOut(duration: 0.5)) {
+                                    if buttonOffset > buttonWidth / 2 {
+                                        buttonOffset = buttonWidth - 80
+                                        isOnboardingViewActive = false
+                                    } else {
+                                        buttonOffset = 0
+                                    }
                                 }
                             }
                         ) //: GESTURE
                         
                         Spacer()
-                    }
+                    } //: HSTACK
                 } //: FOOTER
                 .frame(width: buttonWidth, height: 80, alignment: .center)
                 .padding()
+                .opacity(isAnimation ? 1 : 0)
+                .offset(y: isAnimation ? 0 : 40)
+                .animation(.easeOut(duration: 1), value: isAnimation)
             } //: VSTACK
         } //: ZSTACK
+        .onAppear(perform: {
+            isAnimation = true
+        })
     }
 }
 
