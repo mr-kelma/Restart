@@ -11,7 +11,7 @@ struct HomeView: View {
     // MARK: PROPERTY
 
     @AppStorage("onboarding") var isOnboardingViewActive: Bool = false
-    @State private var isAnimation: Bool = false
+    @State private var isAnimating: Bool = false
     
     // MARK: - BODY
     
@@ -28,12 +28,12 @@ struct HomeView: View {
                     .resizable()
                     .scaledToFit()
                     .padding()
-                    .offset(y: isAnimation ? 35 : -35)
+                    .offset(y: isAnimating ? 35 : -35)
                     .animation(
                     Animation
                         .easeOut(duration: 4)
                         .repeatForever()
-                    , value: isAnimation
+                    , value: isAnimating
                     )
             }
 
@@ -52,6 +52,7 @@ struct HomeView: View {
             
             Button(action: {
                 withAnimation {
+                    playSound(sound: "success", type: "m4a")
                     isOnboardingViewActive = true
                 }
             }) {
@@ -68,7 +69,7 @@ struct HomeView: View {
         } //: VSTACK
         .onAppear(perform: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                isAnimation = true
+                isAnimating = true
             })
         })
     }

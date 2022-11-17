@@ -14,7 +14,12 @@ struct OnboardingView: View {
     
     @State private var buttonWidth: Double = UIScreen.main.bounds.width - 80
     @State private var buttonOffset: CGFloat = 0
-    @State private var isAnimation: Bool = false
+    @State private var isAnimating: Bool = false
+    @State private var imageOffset: CGSize = .zero
+    @State private var indicatorOpacity: Double = 1.0
+    @State private var textTitle: String = "Делись"
+    
+    let hapticFeedback = UINotificationFeedbackGenerator()
     
     // MARK: - BODY
     
@@ -29,10 +34,13 @@ struct OnboardingView: View {
                 Spacer()
                 
                 VStack(spacing: 0) {
-                    Text("Делись")
+                    Text(textTitle)
                         .font(.system(size: 60))
                         .fontWeight(.heavy)
                         .foregroundColor(.white)
+                        .transition(.opacity)
+                        .id(textTitle)
+                    
                     Text("""
                     Дело не в том, сколько мы даем, а в том,
                     сколько любви мы в это вкладываем
@@ -44,21 +52,58 @@ struct OnboardingView: View {
                     .padding(.horizontal, 10)
                     
                 } //: HEADER
-                .opacity(isAnimation ? 1 : 0)
-                .offset(y: isAnimation ? 0 : -50)
-                .animation(.easeOut(duration: 1), value: isAnimation)
+                .opacity(isAnimating ? 1 : 0)
+                .offset(y: isAnimating ? 0 : -50)
+                .animation(.easeOut(duration: 1), value: isAnimating)
                 
                 // MARK: - CENTER
                 
                 ZStack {
                     CircleGroupView(shapeColor: .white, shapeOpacity: 0.2)
+                        .offset(x: -imageOffset.width)
+                        .blur(radius: abs(imageOffset.width / 7))
+                        .animation(.easeOut(duration: 0.8), value: imageOffset)
                     
                     Image("characterOne")
                         .resizable()
                         .scaledToFit()
-                        .opacity(isAnimation ? 1 : 0)
-                        .animation(.easeOut(duration: 0.8), value: isAnimation)
+                        .opacity(isAnimating ? 1 : 0)
+                        .animation(.easeOut(duration: 0.8), value: isAnimating)
+                        .offset(x: imageOffset.width * 1.2, y: 0)
+                        .rotationEffect(.degrees(Double(imageOffset.width / 20)))
+                        .gesture(
+                        DragGesture()
+                            .onChanged { gesture in
+                                if abs(imageOffset.width) <= 150 {
+                                    imageOffset = gesture.translation
+                                    
+                                    withAnimation(.linear(duration: 0.3)) {
+                                        indicatorOpacity = 0
+                                        textTitle = "Давай"
+                                    }
+                                }
+                            }
+                            .onEnded { _ in
+                                imageOffset = .zero
+                                
+                                withAnimation(.linear(duration: 0.3)) {
+                                    indicatorOpacity = 1.0
+                                    textTitle = "Делись"
+                                }
+                            }
+                        ) //: GESTURE
+                        .animation(.easeOut(duration: 0.8), value: imageOffset)
                 } //: CENTER
+                .overlay(
+                Image(systemName: "arrow.left.and.right.circle")
+                    .font(.system(size: 45, weight: .ultraLight))
+                    .foregroundColor(.white)
+                    .offset(y: 25)
+                    .opacity(isAnimating ? 1 : 0)
+                    .animation(.easeOut(duration: 1).delay(2), value: isAnimating)
+                    .opacity(indicatorOpacity)
+                , alignment: .bottom
+                )
                 
                 Spacer()
                 
@@ -78,7 +123,7 @@ struct OnboardingView: View {
                     
                     // 2. CALL-TO-ACTION (STATIC)
                     
-                    Text("Get Started!")
+                    Text("НАЧАТЬ")
                         .font(.system(.title3, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -119,9 +164,12 @@ struct OnboardingView: View {
                             .onEnded { _ in
                                 withAnimation(Animation.easeOut(duration: 0.5)) {
                                     if buttonOffset > buttonWidth / 2 {
+                                        hapticFeedback.notificationOccurred(.success)
+                                        playSound(sound: "chimeup", type: "mp3")
                                         buttonOffset = buttonWidth - 80
                                         isOnboardingViewActive = false
                                     } else {
+                                        hapticFeedback.notificationOccurred(.warning)
                                         buttonOffset = 0
                                     }
                                 }
@@ -133,14 +181,15 @@ struct OnboardingView: View {
                 } //: FOOTER
                 .frame(width: buttonWidth, height: 80, alignment: .center)
                 .padding()
-                .opacity(isAnimation ? 1 : 0)
-                .offset(y: isAnimation ? 0 : 40)
-                .animation(.easeOut(duration: 1), value: isAnimation)
+                .opacity(isAnimating ? 1 : 0)
+                .offset(y: isAnimating ? 0 : 40)
+                .animation(.easeOut(duration: 1), value: isAnimating)
             } //: VSTACK
         } //: ZSTACK
         .onAppear(perform: {
-            isAnimation = true
+            isAnimating = true
         })
+        .preferredColorScheme(.dark)
     }
 }
 
