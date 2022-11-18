@@ -39,12 +39,16 @@ struct HomeView: View {
 
             // MARK: - CENTER
             
-            Text("The time that leads to mastery is dependent on the interesty of our focus.")
+            Text("""
+            Время, которое приводит к мастерству,
+            зависит от того, над чем мы
+            сосредотачиваемся
+            """)
                 .font(.title3)
                 .fontWeight(.light)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
-                .padding()
+                .padding(.horizontal, 10)
             
             // MARK: - FOOTER
             

@@ -11,8 +11,9 @@
 		70502FBF292502410070679F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70502FBE292502410070679F /* ContentView.swift */; };
 		70502FC1292502420070679F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70502FC0292502420070679F /* Assets.xcassets */; };
 		70502FC4292502420070679F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70502FC3292502420070679F /* Preview Assets.xcassets */; };
-		70502FCC292502A60070679F /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 70502FCB292502A60070679F /* Sounds */; };
 		70502FCE292507470070679F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 70502FCD292507470070679F /* .gitignore */; };
+		7058642B29275ABB00329BFC /* chimeup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7058642929275ABB00329BFC /* chimeup.mp3 */; };
+		7058642C29275ABB00329BFC /* success.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7058642A29275ABB00329BFC /* success.m4a */; };
 		707D670C2926A8BE0042B632 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707D670B2926A8BE0042B632 /* AudioPlayer.swift */; };
 		70847AA429250FAE0099489F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70847AA329250FAD0099489F /* OnboardingView.swift */; };
 		70847AA629250FCA0099489F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70847AA529250FCA0099489F /* HomeView.swift */; };
@@ -25,8 +26,9 @@
 		70502FBE292502410070679F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		70502FC0292502420070679F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70502FC3292502420070679F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		70502FCB292502A60070679F /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		70502FCD292507470070679F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7058642929275ABB00329BFC /* chimeup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chimeup.mp3; sourceTree = "<group>"; };
+		7058642A29275ABB00329BFC /* success.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = success.m4a; sourceTree = "<group>"; };
 		707D670B2926A8BE0042B632 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		70847AA229250F100099489F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		70847AA329250FAD0099489F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -87,10 +89,19 @@
 		70502FCA292502800070679F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				70502FCB292502A60070679F /* Sounds */,
+				7058642829275ABB00329BFC /* Sounds */,
 				70502FC0292502420070679F /* Assets.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		7058642829275ABB00329BFC /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				7058642929275ABB00329BFC /* chimeup.mp3 */,
+				7058642A29275ABB00329BFC /* success.m4a */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		70847A9E29250BEC0099489F /* Screens */ = {
@@ -186,8 +197,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7058642B29275ABB00329BFC /* chimeup.mp3 in Resources */,
+				7058642C29275ABB00329BFC /* success.m4a in Resources */,
 				70502FCE292507470070679F /* .gitignore in Resources */,
-				70502FCC292502A60070679F /* Sounds in Resources */,
 				70502FC4292502420070679F /* Preview Assets.xcassets in Resources */,
 				70502FC1292502420070679F /* Assets.xcassets in Resources */,
 			);

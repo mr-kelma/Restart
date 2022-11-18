@@ -10,12 +10,13 @@ import AVFoundation
 var audioPlayer: AVAudioPlayer?
 
 func playSound(sound: String, type: String) {
-    if let url = Bundle.main.url(forResource: sound, withExtension: type) {
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.play()
-        } catch {
-            print("Could not play the sound file")
-        }
+  if let path = Bundle.main.path(forResource: sound, ofType: type) {
+    do {
+      audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+      audioPlayer?.play()
+        print(sound)
+    } catch {
+      print("Could not play the sound file.")
     }
+  }
 }
