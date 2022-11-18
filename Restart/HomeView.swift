@@ -63,7 +63,7 @@ struct HomeView: View {
                 Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
                     .imageScale(.large)
                 
-                Text("Restart")
+                Text("Спасибо")
                     .font(.system(.title3, design: .rounded))
                     .fontWeight(.bold)
             } //: BUTTON
